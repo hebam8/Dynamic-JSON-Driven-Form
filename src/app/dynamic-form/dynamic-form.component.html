@@ -1,0 +1,102 @@
+
+
+<div class="w-75 py-4 mx-auto  mt-5">
+  <div class="shadow-style p-4">
+    <h2>Fill in the following fields</h2>
+    <form  [formGroup]="form" (ngSubmit)="submitForm()">
+      <div *ngFor="let field of jsonConfig.fields">
+        <div *ngIf="field.type === 'text' || field.type==='email'  ||  field.type==='password'">
+          <label class="my-2">{{field.label}}</label>
+          <input class="form-control" [type]="field.type" [formControlName]="field.name"  [placeholder]="field.placeholder" >
+          <p class="text-light" *ngIf="field.name === 'username'">
+           To Uppercase: {{ form.get(field.name)?.value | Uppercase }} </p>
+                    <div  *ngIf="form.get(field.name)?.invalid && form.get(field.name)?.touched">
+           <small class="text-danger" *ngIf="form.get(field.name)?.errors?.['required']">This field is required</small>
+           <small  class="text-danger" *ngIf="form.get('email')?.errors?.['emailTaken']">Email is already taken</small>
+           <small class="text-danger" *ngIf="form.get(field.name)?.errors?.['minlength']">Min length is 6</small>
+           <small class="text-danger" *ngIf="form.get(field.name)?.errors?.['email']">Invalid email format</small>
+          </div>
+        </div>
+
+
+
+        <div class="mb-3" *ngIf="field.type === 'select'">
+          <label class="form-label">{{ field.label }}</label>
+          <select  class="form-select" [formControlName]="field.name">
+            <option class="text-dark" *ngFor="let option of field.options" [value]="option">{{ option }}</option>
+          </select>
+        </div>
+
+
+
+        <div class="mb-3" *ngIf="field.type === 'checkbox'">
+          <label>
+            <input   class="form-check-input" type="checkbox" [formControlName]="field.name">
+            {{ field.label }}
+          </label>
+        </div>
+
+
+
+        <div  class="my-3" *ngIf="field.type === 'group'">
+          <label>{{ field.label }}</label>
+          <div formArrayName="hobbies">
+            <div *ngFor="let hobby of hobbies.controls; let i = index">
+              <input class="form-control my-2" type="text" [formControlName]="i">
+            </div>
+          </div>
+          <button  class="btn btn-style"  type="button" (click)="addHobby()">Add Hobby</button>
+        </div>
+      </div>
+
+
+      <button class="btn btn-style" type="submit" [disabled]="form.invalid">Submit</button>
+      <div *ngIf="submitted" class="confirmation-message">
+       <span class="text-light">Sent successfully  <i class="fa-solid fa-square-check"></i></span>
+      </div>
+    </form>
+
+
+
+    <!-- show data in table -->
+    <h4 class="text-center text-light mt-4">Your Data</h4>
+    <table class="table mb-4">
+      <thead>
+        <tr>
+          <th>Field</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Username</td>
+          <td>{{ form.value.username }}</td>
+        </tr>
+        <tr>
+          <td>Email</td>
+          <td>{{ form.value.email }}</td>
+        </tr>
+        <tr>
+          <td>Password</td>
+          <td>****</td>
+        </tr>
+        <tr>
+          <td>Hobbies</td>
+          <td>
+            <ul>
+              <li *ngFor="let hobby of form.value.hobbies">{{ hobby }}</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>Country</td>
+          <td>{{ form.value.country }}</td>
+        </tr>
+        <tr>
+          <td>Subscribed</td>
+          <td>{{ form.value.subscribe ? 'Yes' : 'No' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  </div>

@@ -1,0 +1,53 @@
+::-moz-placeholder {
+  color: var(--second-color);
+}
+
+::placeholder {
+  color: var(--second-color);
+}
+
+input, select {
+  background-color: transparent !important;
+  color: var(--text-color);
+}
+
+input:focus {
+  outline: none !important;
+  box-shadow: var(--second-color) 0px 2px 8px;
+  color: white;
+}
+
+.btn-style {
+  color: white !important;
+  padding: 5px 25px;
+  margin: start;
+  display: block;
+  background-color: transparent;
+  border: rgb(61, 60, 60) solid 2px;
+}
+
+button:hover {
+  color: var(--second-color) !important;
+  font-weight: 500;
+  background-color: var(--text-color);
+}
+
+button {
+  transition: all 1s;
+}
+
+select option {
+  color: var(--text-color);
+}
+
+th, td {
+  color: var(--second-color);
+}
+
+td {
+  font-weight: 600;
+}
+
+th {
+  font-weight: 800;
+}/*# sourceMappingURL=dynamic-form.component.css.map */

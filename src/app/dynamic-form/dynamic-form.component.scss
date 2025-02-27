@@ -1,0 +1,51 @@
+
+$bg-color: #0F1A2F;
+$text-color: #fff;
+$second-color: #92684c;
+$main-font: "Spectral", sans-serif;
+
+::placeholder {
+  color: $second-color;
+}
+
+input, select {
+  background-color: transparent !important;
+  color: $text-color;
+}
+
+input:focus {
+  outline: none !important;
+  box-shadow: $second-color 0px 2px 8px;
+  color: white;
+}
+
+.btn-style {
+  color: white !important;
+  padding: 5px 25px;
+  display: block;
+  background-color: transparent;
+  border: 2px solid rgb(61, 60, 60);
+}
+
+button {
+  transition: all 1s;
+
+  &:hover {
+    color: $second-color !important;
+    font-weight: 500;
+    background-color: $text-color;
+  }
+}
+
+
+th, td {
+  color: $second-color;
+}
+
+td {
+  font-weight: 600;
+}
+
+th {
+  font-weight: 800;
+}
